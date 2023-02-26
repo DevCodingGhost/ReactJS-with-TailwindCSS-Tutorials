@@ -63,7 +63,8 @@ export const Button = ({ className, children, rounded, variant, ...props }) => (
 );
 
 Button.defaultProps = {
-  rounded: false,
+  rounded: true,
+  variant: "primary",
 };
 
 Button.propTypes = {

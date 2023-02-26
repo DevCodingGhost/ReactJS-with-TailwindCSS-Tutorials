@@ -6,7 +6,7 @@ export const Tooltip = ({ position, content, children }) => (
     <div className="mx-2 my-1">{children}</div>
     <span
       className={classNames(
-        "absolute inline-block bg-neutral-900 text-white text-xs p-2 whitespace-nowrap rounded",
+        "absolute hidden group-hover:inline-block bg-neutral-900 text-white text-xs p-2 whitespace-nowrap rounded",
         position === "top"
           ? "left-1/2 -translate-x-1/2 bottom-[calc(100%+5px)]"
           : "",
@@ -25,7 +25,7 @@ export const Tooltip = ({ position, content, children }) => (
     </span>
     <span
       className={classNames(
-        "absolute inline-block border-[6px]",
+        "absolute hidden group-hover:inline-block border-[6px]",
         position === "top"
           ? "left-1/2 -translate-x-1/2 bottom-full border-l-transparent border-r-transparent border-b-0 border-t-neutral-900"
           : "",
