@@ -4,35 +4,39 @@ export const Modal = ({
   title,
   footer,
   children,
-  width,
   onClose,
+  width,
+  closeBtn,
   ...props
 }) => {
   return (
     <div
       id="modal-overlay"
-      className="bg-black/75 absolute z-[99] w-screen h-screen"
+      className="bg-black/75 z-[99] absolute h-screen w-screen"
     >
       <div
         id="modal"
-        className="absolute z-[100] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#121212] text-gray-200 px-4 rounded-lg divide-y-2 divide-white/50 flex flex-col"
+        className="bg-[#121212] text-gray-200 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg px-4 flex flex-col divide-y-[1px] divide-gray-400"
         style={{ width }}
+        {...props}
       >
-        <header className="flex items-center justify-between">
+        <header className="flex items-center justify-between py-2">
           {typeof title === "string" ? (
-            <div className="text-2xl font-bold py-2">{title}</div>
+            <div className="text-2xl font-semibold">{title}</div>
           ) : (
             title
           )}
-          <div
-            id="close-btn"
-            className="text-3xl font-semibold leading-4 font-mono align-middle text-center text-gray-400 hover:bg-white rounded-lg p-1.5 cursor-pointer"
-            onClick={() => onClose()}
-          >
-            &times;
-          </div>
+          {closeBtn && (
+            <div
+              id="close-btn"
+              className="font-mono text-3xl font-semibold text-gray-400 p-1.5 hover:text-red-700 hover:bg-white rounded-lg text-center align-middle leading-4 cursor-pointer"
+              onClick={() => onClose()}
+            >
+              &times;
+            </div>
+          )}
         </header>
-        <main className="py-3">{children}</main>
+        <main className="py-4">{children}</main>
         {footer !== null && <footer>{footer}</footer>}
       </div>
     </div>
@@ -40,14 +44,16 @@ export const Modal = ({
 };
 
 Modal.defaultProps = {
-  footer: null,
   width: 400,
+  footer: null,
+  closeBtn: true,
 };
 
 Modal.propTypes = {
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   footer: PropTypes.node,
   children: PropTypes.node.isRequired,
+  onClose: PropTypes.func.isRequired,
   width: PropTypes.number,
-  onClose: PropTypes.func,
+  closeBtn: PropTypes.bool.isRequired,
 };
