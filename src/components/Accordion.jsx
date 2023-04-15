@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 import { classNames } from "./classNames";
 
-export const Accordion = ({ data, keyAttr, valAttr, height, width }) => {
+export const Accordion = ({ data, height, width, keyAttr, valAttr }) => {
   const [current, setCurrent] = useState(null);
 
   const select = useCallback(
@@ -15,16 +15,13 @@ export const Accordion = ({ data, keyAttr, valAttr, height, width }) => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center divide-y-2 shadow dark:ring-1 dark:ring-neutral-500"
+      className="flex flex-col items-center justify-center divide-y-2 dark:divide-neutral-600 dark:ring-1 dark:ring-neutral-600 text-black bg-white dark:text-white dark:bg-neutral-700/75"
       style={{ width }}
     >
       {data.map((item, index) => (
-        <div
-          className="bg-white text-black dark:bg-neutral-700/75 dark:text-white flex flex-col group"
-          key={index}
-        >
+        <div className="flex flex-col shadow group" key={index}>
           <div
-            className="text-xl cursor-pointer p-2 flex items-center justify-between group-hover:text-neutral-600"
+            className="text-xl flex items-center justify-between cursor-pointer group-hover:text-neutral-400 p-2"
             onClick={() => select(index)}
           >
             <span>{item[keyAttr]}</span>
@@ -32,12 +29,10 @@ export const Accordion = ({ data, keyAttr, valAttr, height, width }) => {
           </div>
           <div
             className={classNames(
-              "text-base transition-all ease-in-out duration-500 overflow-auto mx-2",
+              "transition-all duration-500 ease-in-out overflow-auto mx-2",
               current === index ? "p-2 border-t-2" : "p-0"
             )}
-            style={{
-              maxHeight: current === index ? height : 0,
-            }}
+            style={{ maxHeight: current === index ? height : 0 }}
           >
             {item[valAttr]}
           </div>
@@ -49,13 +44,15 @@ export const Accordion = ({ data, keyAttr, valAttr, height, width }) => {
 
 Accordion.propTypes = {
   data: PropTypes.array,
+  height: PropTypes.number,
+  width: PropTypes.number,
   keyAttr: PropTypes.string,
   valAttr: PropTypes.string,
-  width: PropTypes.number,
-  height: PropTypes.number,
 };
 
 Accordion.defaultProps = {
-  height: 200,
   width: 400,
+  height: 200,
+  keyAttr: "title",
+  valAttr: "content",
 };
