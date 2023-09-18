@@ -35,7 +35,7 @@ export const Select = ({ options, value, onChange }) => {
       ? OPTIONS.map((o, i) => (
           <div
             key={i}
-            className="px-3 py-1 cursor-pointer text-neutral-600 hover:bg-neutral-300"
+            className="px-3 py-1 cursor-pointer bg-white text-neutral-600 hover:bg-neutral-300"
             onClick={() => {
               onChange(o.toString());
               setOpen(false);
@@ -47,7 +47,7 @@ export const Select = ({ options, value, onChange }) => {
       : [
           <div
             key={"not-found"}
-            className="px-3 py-1 cursor-pointer text-neutral-600 hover:bg-neutral-300"
+            className="px-3 py-1 cursor-pointer bg-white text-neutral-600 hover:bg-neutral-300"
             onClick={() => {
               onChange("");
               setOpen(false);
@@ -65,7 +65,7 @@ export const Select = ({ options, value, onChange }) => {
       id={`Select-${id}`}
       className="relative flex flex-col items-center justify-center"
     >
-      <div className="flex items-center justify-between divide-x divide-neutral-200 gap-1 border border-neutral-400 rounded-md overflow-hidden">
+      <div className="flex w-full items-center justify-between divide-x divide-neutral-200 gap-1 border border-neutral-400 bg-white text-black rounded-md overflow-hidden">
         <input
           className="outline-none px-2"
           placeholder="Search..."
@@ -90,7 +90,7 @@ export const Select = ({ options, value, onChange }) => {
       <div
         id="options"
         className={classNames(
-          "absolute top-10 border-neutral-400 w-full rounded-md overflow-auto transition-all",
+          "absolute top-10 border-neutral-400 w-full rounded-md overflow-auto transition-all text-black",
           open ? "max-h-40 border" : "max-h-0 border-0"
         )}
       >

@@ -1,32 +1,17 @@
-import { useState } from "react";
-import { Select } from "./components/Select";
+import { Modal } from "./components/Modal";
+import Portal from "./components/Portal";
 
-const App = () => {
-  const [value, setValue] = useState("");
+export default function App() {
   return (
-    <div className="h-screen w-full">
-      <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 flex flex-col items-center justify-center">
-        <Select
-          value={value}
-          onChange={(e) => setValue(e)}
-          options={[
-            "item 1",
-            "item 2",
-            "item 3",
-            "item 4",
-            "item 5",
-            "item 6",
-            "item 7",
-            "item 8",
-            "item 9",
-            "item 10",
-            "item 11",
-            "item 12",
-          ]}
-        />
-      </div>
+    <div className="min-h-screen w-screen flex items-center justify-center">
+      <Portal>
+        <Modal>
+          Modal 1
+          <Portal>
+            <Modal>Modal 2</Modal>
+          </Portal>
+        </Modal>
+      </Portal>
     </div>
   );
-};
-
-export default App;
+}
