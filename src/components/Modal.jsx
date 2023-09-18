@@ -12,7 +12,7 @@ export const Modal = ({
   return (
     <div
       id="modal-overlay"
-      className="bg-black/75 z-[99] absolute h-screen w-screen"
+      className="bg-black/75 z-[99] fixed top-0 right-0 bottom-0 left-0 h-screen w-screen"
     >
       <div
         id="modal"
@@ -47,6 +47,8 @@ Modal.defaultProps = {
   width: 400,
   footer: null,
   closeBtn: true,
+  onClose: () => {},
+  title: "",
 };
 
 Modal.propTypes = {
